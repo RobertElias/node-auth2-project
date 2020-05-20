@@ -50,6 +50,19 @@ router.post("/login", (req, res) => {
         });
 });
 
+router.get("/logout", (req, res) => {
+    if (req.session) {
+      req.session.destroy(err => {
+        if (err) {
+          res.status(500).json({ message: "we could not log you out, try later please" });
+        } else {
+          res.status(200).json({message: 'You have been logged out!'})
+        }
+      });
+    } else {
+      res.status(200).json({message: "You weren't even logged in."})
+    }
+  });
 function generateToken(user) {
     // the data
     const payload = {
