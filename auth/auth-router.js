@@ -49,7 +49,7 @@ router.post("/login", (req, res) => {
             res.status(500).json({ errorMessage: error.message });
         });
 });
-
+//LOGOUT not necessary
 router.get("/logout", (req, res) => {
     if (req.session) {
       req.session.destroy(err => {
@@ -63,6 +63,7 @@ router.get("/logout", (req, res) => {
       res.status(200).json({message: "You weren't even logged in."})
     }
   });
+
 function generateToken(user) {
     // the data
     const payload = {
